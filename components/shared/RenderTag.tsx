@@ -6,7 +6,7 @@ interface TagProps {
   _id: number;
   name: string;
   totalQuestions?: number;
-  showCount?: Boolean;
+  showCount?: boolean;
 }
 
 const RenderTag = ({ _id, name, totalQuestions, showCount }: TagProps) => {
