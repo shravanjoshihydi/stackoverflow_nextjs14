@@ -4,6 +4,41 @@ import Link from "next/link";
 import Filters from "@/components/shared/filters/Filters";
 import { HomePageFilters } from "@/constants/filters";
 import HomeFilters from "@/components/home/HomeFilters";
+import NoResult from "@/components/shared/NoResult";
+import QuestionCard from "@/components/cards/QuestionCard";
+const questions = [
+  {
+    _id: "1",
+    title: "Random Question I want to ask?",
+    tags: [
+      { _id: "1", name: "python" },
+      { _id: "2", name: "sql" },
+    ],
+    author: {
+      _id: "1",
+      name: "John Doe",
+      picture: "https://randomuser.me/api/portraits/men/1.jpg",
+    },
+    upvotes: 10,
+    views: 100,
+    answers: [{}],
+    createdAt: new Date("2024-09-28T12:00:00.000Z"),
+  },
+  {
+    _id: "2",
+    title: "How to center a div?",
+    tags: [{ _id: "3", name: "css" }],
+    author: {
+      _id: "2",
+      name: "S H Joshi",
+      picture: "https://randomuser.me/api/portraits/men/2.jpg",
+    },
+    upvotes: 1098989,
+    views: 9992923,
+    answers: [{}],
+    createdAt: new Date("2024-08-21T12:00:00.000Z"),
+  },
+];
 
 export default function Home() {
   return (
@@ -32,6 +67,22 @@ export default function Home() {
       </div>
 
       <HomeFilters />
+
+      <div className="mt-10 flex w-full flex-col gap-6">
+        {/* Loop through questions */}
+        {questions.length > 0 ? (
+          questions.map((question) => (
+            <QuestionCard key={question._id} question={question} />
+          ))
+        ) : (
+          <NoResult
+            title="There are no questions to show"
+            description="Be the first to break the silence. Ask a question right now."
+            link="/ask-question"
+            linkTitle="Ask a question"
+          />
+        )}
+      </div>
     </>
   );
 }
