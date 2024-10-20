@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import React,{ useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +24,7 @@ import Image from "next/image";
 import { createQuestion } from "@/lib/actions/question.action";
 import { usePathname,useRouter } from "next/navigation";
 
-const type: any = "create";
+const type: string = "create";
 interface Props{
   mongoUserId: string;
 }
@@ -68,6 +68,7 @@ const Question = ({mongoUserId}: Props) => {
 
   const handleInputDownKey = (
     e: React.KeyboardEvent<HTMLInputElement>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     field: any
   ) => {
     if (e.key === "Enter" && field.name === "tags") {
@@ -91,6 +92,7 @@ const Question = ({mongoUserId}: Props) => {
       }
     }
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleTagRemove = (tag: string, field: any) => {
     const newTags = field.value.filter((t: string) => t !== tag);
     form.setValue("tags", newTags);
@@ -105,7 +107,7 @@ const Question = ({mongoUserId}: Props) => {
           control={form.control}
           name="title"
           render={({ field }) => (
-            <FormItem className="felx w-full flex-col">
+            <FormItem className="flex w-full flex-col">
               <FormLabel className="paragraph-semibold text-dark400_light800">
                 Question Title <span className="text-primary-500">*</span>
               </FormLabel>
@@ -127,7 +129,7 @@ const Question = ({mongoUserId}: Props) => {
           control={form.control}
           name="explaination"
           render={({ field }) => (
-            <FormItem className="felx w-full flex-col gap-3">
+            <FormItem className="flex w-full flex-col gap-3">
               <FormLabel className="paragraph-semibold text-dark400_light800">
                 Detailed explaination of your problem{" "}
                 <span className="text-primary-500">*</span>
@@ -182,7 +184,7 @@ const Question = ({mongoUserId}: Props) => {
           control={form.control}
           name="tags"
           render={({ field }) => (
-            <FormItem className="felx w-full flex-col">
+            <FormItem className="flex w-full flex-col">
               <FormLabel className="paragraph-semibold text-dark400_light800">
                 Tags <span className="text-primary-500">*</span>
               </FormLabel>
@@ -195,7 +197,7 @@ const Question = ({mongoUserId}: Props) => {
                   />
                   {field.value.length > 0 && (
                     <div className="flex-start mt-2.5 gap-2.5">
-                      {field.value.map((tag: any) => (
+                      {field.value.map((tag: string) => (
                         <Badge
                           key={tag}
                           className="subtle-medium background-light800_dark300 text-light400_light500 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 capitalize"

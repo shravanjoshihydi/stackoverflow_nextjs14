@@ -23,7 +23,7 @@ interface QuestionCardTypes {
 const QuestionCard = ({ question }: QuestionCardTypes) => {
   return (
     <div className="card-wrapper rounded-[10px] p-9 sm:px-11">
-      <div className="flex justify-between items-center mb-5">
+      <div className="mb-5 flex items-center justify-between">
         <div>
           <span className="subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden">
             {getTimeStamp(question.createdAt)}
